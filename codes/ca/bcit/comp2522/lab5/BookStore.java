@@ -32,6 +32,7 @@ public class BookStore
     BookStore(final String bookStoreName,
               final List<Novel> novels)
     {
+        this.bookStoreName = bookStoreName;
         this.novelList = new ArrayList<>();
 
         novelList.add(new Novel("The Adventures of Augie March", "Saul Bellow", 1953));
