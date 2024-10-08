@@ -426,8 +426,8 @@ public class BookStore
         oldestBook = myBookStore.getOldestBook();
         getBooksThisLength = myBookStore.getBooksThisLength(8);
 
-        System.out.println("Does book exist in 1980? " + (bookWrittenBetween ? "Yes" : "No"));
-        System.out.println("The number of book which contains word \"white\": " + wordCount);
+        System.out.println("Does this book store has a book written in 1980: " + (bookWrittenBetween ? "Yes" : "No"));
+        System.out.println("The number of books that contains the word \"white\": " + wordCount);
         System.out.println("Percentage of books written between 1510 and 1980: " + percentage + "%");
         System.out.println("The older Book in the store: " + oldestBook);
         System.out.println("The books that have length of 8: " + getBooksThisLength);
