@@ -9,6 +9,9 @@ import java.util.List;
  * It provides methods to perform various operations related to the novels in the store,
  * such as retrieving the name of the bookstore, counting books that contain specific words,
  * calculating the percentage of books written in a certain year range, and more.
+ *
+ * @version 1.0
+ * @author Yuho Lim
  */
 public class BookStore
 {
