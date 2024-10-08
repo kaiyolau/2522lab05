@@ -284,9 +284,12 @@ public class BookStore
 
         for (final Novel novel : novelList)
         {
-            if (novel.getYearPublished() < oldestBook.getYearPublished())
+            if (novel != null)
             {
-                oldestBook = novel;
+                if (novel.getYearPublished() < oldestBook.getYearPublished())
+                {
+                    oldestBook = novel;
+                }
             }
         }
         return oldestBook.toString();
@@ -312,12 +315,15 @@ public class BookStore
 
         for (final Novel novel : novelList)
         {
-            int selectedBookLength;
-            selectedBookLength = novel.getTitle().length();
-
-            if (selectedBookLength == titleLength)
+            if (novel != null)
             {
-                sameLengthTitle.add(novel);
+                int selectedBookLength;
+                selectedBookLength = novel.getTitle().length();
+
+                if (selectedBookLength == titleLength)
+                {
+                    sameLengthTitle.add(novel);
+                }
             }
         }
         return sameLengthTitle.toString();
