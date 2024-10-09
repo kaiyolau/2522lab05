@@ -11,20 +11,25 @@ import java.util.List;
  * calculating the percentage of books written in a certain year range, and more.
  *
  * @author Yuho Lim
+ * @author Daniil Yarygin
+ * @author Kyle Lau
+ * @author Gem Baojimin Sha
  * @version 1.0
  */
 public class BookStore
 {
-    private static final int MIN_YEAR = 0;
-    private static final int MAX_YEAR = 9999;
-    private static final int MIN_TITLE_Length = 0;
-    private static final int MAX_TITLE_Length = 9999;
-    private static final int PERCENTAGE_FIXER = 100;
+    private static final int  MIN_YEAR = 0;
+    private static final int  MAX_YEAR = 9999;
+    private static final int  MIN_TITLE_Length = 0;
+    private static final int  MAX_TITLE_Length = 9999;
+    private static final int  PERCENTAGE_FIXER = 100;
+
     private final List<Novel> novelList;
-    private String bookStoreName;
-    private static final int DECADE_DIVIDER_TEN = 10;
-    private static final int DECADE_ADDITION_NINE = 9;
-    private static final int ZERO = 0;
+    private String            bookStoreName;
+
+    private static final int  DECADE_DIVIDER_TEN = 10;
+    private static final int  DECADE_ADDITION_NINE = 9;
+    private static final int  ARRAY_INDEX_ZERO = 0;
 
     /**
      * Constructs a new BookStore with the specified name and list of novels.
@@ -234,7 +239,7 @@ public class BookStore
             return;
         }
 
-        Novel longestTitleNovel = novelList.get(ZERO);
+        Novel longestTitleNovel = novelList.get(ARRAY_INDEX_ZERO);
         for(Novel novel : novelList)
         {
             if(novel.getTitle().length() > longestTitleNovel.getTitle().length())
