@@ -10,8 +10,8 @@ import java.util.List;
  * such as retrieving the name of the bookstore, counting books that contain specific words,
  * calculating the percentage of books written in a certain year range, and more.
  *
- * @version 1.0
  * @author Yuho Lim
+ * @version 1.0
  */
 public class BookStore
 {
@@ -22,9 +22,10 @@ public class BookStore
     private static final int PERCENTAGE_FIXER = 100;
     private final List<Novel> novelList;
     private String bookStoreName;
-    private static final int TEN = 10;
-    private static final int NINE = 9;
+    private static final int DECADE_DIVIDER_TEN = 10;
+    private static final int DECADE_ADDITION_NINE = 9;
     private static final int ZERO = 0;
+
     /**
      * Constructs a new BookStore with the specified name and list of novels.
      *
@@ -163,8 +164,10 @@ public class BookStore
     /**
      * Prints all titles in UPPERCASE.
      */
-    public void printAllTitles() {
-        for (Novel novel : novelList) {
+    public void printAllTitles()
+    {
+        for(Novel novel : novelList)
+        {
             System.out.println(novel.getTitle().toUpperCase());
         }
     }
@@ -174,9 +177,12 @@ public class BookStore
      *
      * @param title The string to search for within the book titles.
      */
-    public void printBookTitle(final String title) {
-        for (Novel novel : novelList) {
-            if (novel.getTitle().toLowerCase().contains(title.toLowerCase())) {
+    public void printBookTitle(final String title)
+    {
+        for(Novel novel : novelList)
+        {
+            if(novel.getTitle().toLowerCase().contains(title.toLowerCase()))
+            {
                 System.out.println(novel.getTitle());
             }
         }
@@ -185,13 +191,16 @@ public class BookStore
     /**
      * Prints all titles in alphabetical order, A-Z.
      */
-    public void printTitlesInAlphaOrder() {
+    public void printTitlesInAlphaOrder()
+    {
         List<String> titles = new ArrayList<>();
-        for (Novel novel : novelList) {
+        for(Novel novel : novelList)
+        {
             titles.add(novel.getTitle());
         }
         titles.sort(String::compareToIgnoreCase);
-        for (String title : titles) {
+        for(String title : titles)
+        {
             System.out.println(title);
         }
     }
@@ -201,11 +210,14 @@ public class BookStore
      *
      * @param decade The decade to filter books by (e.g., 2000 for 2000-2009).
      */
-    public void printGroupByDecade(final int decade) {
-        int startYear = (decade / TEN) * TEN;
-        int endYear = startYear + NINE;
-        for (Novel novel : novelList) {
-            if (novel.getYearPublished() >= startYear && novel.getYearPublished() <= endYear) {
+    public void printGroupByDecade(final int decade)
+    {
+        int startYear = (decade / DECADE_DIVIDER_TEN) * DECADE_DIVIDER_TEN;
+        int endYear = startYear + DECADE_ADDITION_NINE;
+        for(Novel novel : novelList)
+        {
+            if(novel.getYearPublished() >= startYear && novel.getYearPublished() <= endYear)
+            {
                 System.out.println(novel.getTitle());
             }
         }
@@ -214,15 +226,19 @@ public class BookStore
     /**
      * Finds and prints the longest title in the bookstore.
      */
-    public void getLongest() {
-        if (novelList.isEmpty()) {
+    public void getLongest()
+    {
+        if(novelList.isEmpty())
+        {
             System.out.println("No books in the bookstore.");
             return;
         }
 
         Novel longestTitleNovel = novelList.get(ZERO);
-        for (Novel novel : novelList) {
-            if (novel.getTitle().length() > longestTitleNovel.getTitle().length()) {
+        for(Novel novel : novelList)
+        {
+            if(novel.getTitle().length() > longestTitleNovel.getTitle().length())
+            {
                 longestTitleNovel = novel;
             }
         }
@@ -231,26 +247,26 @@ public class BookStore
 
     /**
      * Checks if there is a novel in the list that was written in the specified year.
-     *
+     * <p>
      * This method iterates through the list of novels and checks if any novel's
      * publication year matches the given year. If a match is found, it returns true
      * immediately; otherwise, it returns false after checking all novels.
      *
      * @param year The year to check if a book was written.
      * @return {@code true} if a novel was written in the specified year;
-     *         {@code false} otherwise.
+     * {@code false} otherwise.
      * @throws IllegalArgumentException if the specified year is invalid.
      */
     public boolean isThereABookWrittenBetween(final int year)
     {
         validateYear(year);
 
-        for (Novel novel : novelList)
+        for(Novel novel : novelList)
         {
             int selectedBook;
             selectedBook = novel.getYearPublished();
 
-            if (selectedBook == year)
+            if(selectedBook == year)
             {
                 return true;
             }
@@ -272,12 +288,12 @@ public class BookStore
         int wordCount;
         wordCount = 0;
 
-        if (novelList != null)
+        if(novelList != null)
         {
             final Iterator<Novel> it;
             it = novelList.iterator();
 
-            while (it.hasNext())
+            while(it.hasNext())
             {
                 final Novel novels;
                 novels = it.next();
@@ -302,8 +318,8 @@ public class BookStore
      * @return The percentage of books written between the specified years.
      * @throws IllegalArgumentException If the year range is invalid.
      */
-    public int whichPercentWrittenBetween (final int first,
-                                           final int last)
+    public int whichPercentWrittenBetween(final int first,
+                                          final int last)
     {
         validateTwoYears(first, last);
 
@@ -320,7 +336,7 @@ public class BookStore
             final Iterator<Novel> it;
             it = novelList.iterator();
 
-            while (it.hasNext())
+            while(it.hasNext())
             {
                 final Novel selectednovel;
                 int selectedYear;
@@ -328,9 +344,9 @@ public class BookStore
                 selectednovel = it.next();
                 selectedYear = selectednovel.getYearPublished();
 
-                if (first <= selectedYear && last >= selectedYear)
+                if(first <= selectedYear && last >= selectedYear)
                 {
-                    selectedNumOfBooks ++;
+                    selectedNumOfBooks++;
                 }
             }
             percentageOfSelectedBooks = (selectedNumOfBooks * PERCENTAGE_FIXER) / totalNumOfBooks;
@@ -346,7 +362,7 @@ public class BookStore
     public String getOldestBook()
     {
 
-        if (novelList == null || novelList.isEmpty())
+        if(novelList == null || novelList.isEmpty())
         {
             return null;
         }
@@ -354,11 +370,11 @@ public class BookStore
         Novel oldestBook;
         oldestBook = novelList.getFirst();
 
-        for (final Novel novel : novelList)
+        for(final Novel novel : novelList)
         {
-            if (novel != null)
+            if(novel != null)
             {
-                if (novel.getYearPublished() < oldestBook.getYearPublished())
+                if(novel.getYearPublished() < oldestBook.getYearPublished())
                 {
                     oldestBook = novel;
                 }
@@ -378,21 +394,21 @@ public class BookStore
     {
         validateTitleLength(titleLength);
 
-        if (novelList == null || novelList.isEmpty())
+        if(novelList == null || novelList.isEmpty())
         {
             return null;
         }
 
         List<Novel> sameLengthTitle = new ArrayList<>();
 
-        for (final Novel novel : novelList)
+        for(final Novel novel : novelList)
         {
-            if (novel != null)
+            if(novel != null)
             {
                 int selectedBookLength;
                 selectedBookLength = novel.getTitle().length();
 
-                if (selectedBookLength == titleLength)
+                if(selectedBookLength == titleLength)
                 {
                     sameLengthTitle.add(novel);
                 }
@@ -403,7 +419,7 @@ public class BookStore
 
     private void validateYear(final int year)
     {
-        if (year < MIN_YEAR || year > MAX_YEAR)
+        if(year < MIN_YEAR || year > MAX_YEAR)
         {
 
             throw new IllegalArgumentException("Year needs to be between " +
@@ -411,6 +427,7 @@ public class BookStore
 
         }
     }
+
     /**
      * Validates that the provided word is not null or empty.
      *
@@ -435,9 +452,9 @@ public class BookStore
      * @throws IllegalArgumentException If the years are out of bounds.
      */
     private void validateTwoYears(final int first,
-                              final int last)
+                                  final int last)
     {
-        if (first < MIN_YEAR || first > MAX_YEAR)
+        if(first < MIN_YEAR || first > MAX_YEAR)
         {
 
             throw new IllegalArgumentException("Year needs to be between " +
@@ -445,7 +462,7 @@ public class BookStore
 
         }
 
-        if (last < MIN_YEAR || last > MAX_YEAR)
+        if(last < MIN_YEAR || last > MAX_YEAR)
         {
 
             throw new IllegalArgumentException("Year needs to be between " +
@@ -475,7 +492,7 @@ public class BookStore
      * It demonstrates the usage of various methods in the BookStore class
      * by creating a BookStore instance and calling its methods to display
      * information about the books in the store.
-     *
+     * <p>
      * The program performs the following tasks:
      * <ul>
      *   <li>Checks if there is a book written in a specific year.</li>
@@ -484,11 +501,12 @@ public class BookStore
      *   <li>Finds the oldest book in the store.</li>
      *   <li>Retrieves books that have a specific length in their titles.</li>
      * </ul>
-     *
+     * <p>
      * It then prints the results of these operations to the console in a human-readable format.
      */
 
-    public static void main(final String[] args) {
+    public static void main(final String[] args)
+    {
         // Variables for testing the methods
         boolean bookWrittenBetween;
         int wordCount;
