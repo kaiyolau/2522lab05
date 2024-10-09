@@ -18,17 +18,22 @@ public class Novel
 
     public String getTitle()
     {
+
         return title;
     }
 
     public String getAuthorName()
     {
+
         return authorName;
+
     }
 
     public int getYearPublished()
     {
+
         return yearPublished;
+
     }
 
 
