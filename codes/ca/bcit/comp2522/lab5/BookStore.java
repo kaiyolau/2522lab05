@@ -22,7 +22,9 @@ public class BookStore
     private static final int PERCENTAGE_FIXER = 100;
     private final List<Novel> novelList;
     private String bookStoreName;
-
+    private static final int TEN = 10;
+    private static final int NINE = 9;
+    private static final int ZERO = 0;
     /**
      * Constructs a new BookStore with the specified name and list of novels.
      *
@@ -155,6 +157,76 @@ public class BookStore
     public void setBookStoreName(final String bookStoreName)
     {
         this.bookStoreName = bookStoreName;
+    }
+
+
+    /**
+     * Prints all titles in UPPERCASE.
+     */
+    public void printAllTitles() {
+        for (Novel novel : novelList) {
+            System.out.println(novel.getTitle().toUpperCase());
+        }
+    }
+
+    /**
+     * Prints all titles that contain the specified parameter.
+     *
+     * @param title The string to search for within the book titles.
+     */
+    public void printBookTitle(final String title) {
+        for (Novel novel : novelList) {
+            if (novel.getTitle().toLowerCase().contains(title.toLowerCase())) {
+                System.out.println(novel.getTitle());
+            }
+        }
+    }
+
+    /**
+     * Prints all titles in alphabetical order, A-Z.
+     */
+    public void printTitlesInAlphaOrder() {
+        List<String> titles = new ArrayList<>();
+        for (Novel novel : novelList) {
+            titles.add(novel.getTitle());
+        }
+        titles.sort(String::compareToIgnoreCase);
+        for (String title : titles) {
+            System.out.println(title);
+        }
+    }
+
+    /**
+     * Prints all books for the inputted decade.
+     *
+     * @param decade The decade to filter books by (e.g., 2000 for 2000-2009).
+     */
+    public void printGroupByDecade(final int decade) {
+        int startYear = (decade / TEN) * TEN;
+        int endYear = startYear + NINE;
+        for (Novel novel : novelList) {
+            if (novel.getYearPublished() >= startYear && novel.getYearPublished() <= endYear) {
+                System.out.println(novel.getTitle());
+            }
+        }
+    }
+
+    /**
+     * Finds and prints the longest title in the bookstore.
+     */
+    public void getLongest() {
+        if (novelList.isEmpty()) {
+            System.out.println("No books in the bookstore.");
+            return;
+        }
+
+        Novel longestTitleNovel = novelList.get(ZERO);
+        for (Novel novel : novelList) {
+            if (novel.getTitle().length() > longestTitleNovel.getTitle().length()) {
+                longestTitleNovel = novel;
+            }
+        }
+        System.out.println("The longest title is: " + longestTitleNovel.getTitle());
     }
 
     /**
@@ -415,28 +487,62 @@ public class BookStore
      *
      * It then prints the results of these operations to the console in a human-readable format.
      */
-    public static void main(final String[] args)
-    {
+
+    public static void main(final String[] args) {
+        // Variables for testing the methods
         boolean bookWrittenBetween;
         int wordCount;
         int percentage;
         String oldestBook;
         String getBooksThisLength;
 
+        // Create a list of novels to be used in the bookstore
         List<Novel> novelList = new ArrayList<>();
+
+        // Create the bookstore object with the list of novels
         BookStore myBookStore = new BookStore("Animal Crossing", novelList);
 
+        // Call the method to check if there's a book written in 1980
         bookWrittenBetween = myBookStore.isThereABookWrittenBetween(1980);
-        wordCount = myBookStore.howManyBooksContain("white");
-        percentage = myBookStore.whichPercentWrittenBetween(1510, 1980);
-        oldestBook = myBookStore.getOldestBook();
-        getBooksThisLength = myBookStore.getBooksThisLength(8);
+        System.out.println("Does this book store have a book written in 1980: " + (bookWrittenBetween ? "Yes" : "No"));
 
-        System.out.println("Does this book store has a book written in 1980: " + (bookWrittenBetween ? "Yes" : "No"));
-        System.out.println("The number of books that contains the word \"white\": " + wordCount);
+        // Call the method to count how many books contain the word "white"
+        wordCount = myBookStore.howManyBooksContain("white");
+        System.out.println("The number of books that contain the word \"white\": " + wordCount);
+
+        // Call the method to find the percentage of books written between 1510 and 1980
+        percentage = myBookStore.whichPercentWrittenBetween(1510, 1980);
         System.out.println("Percentage of books written between 1510 and 1980: " + percentage + "%");
-        System.out.println("The older Book in the store: " + oldestBook);
-        System.out.println("The books that have length of 8: " + getBooksThisLength);
+
+        // Call the method to get the oldest book in the bookstore
+        oldestBook = myBookStore.getOldestBook();
+        System.out.println("The oldest book in the store: " + oldestBook);
+
+        // Call the method to get books with titles of a specific length
+        getBooksThisLength = myBookStore.getBooksThisLength(8);
+        System.out.println("The books that have a length of 8 characters: " + getBooksThisLength);
+
+        // New Tests for the latest methods implemented
+
+        // Test the printAllTitles method to ensure it prints all titles in uppercase
+        System.out.println("\nAll titles in UPPERCASE:");
+        myBookStore.printAllTitles();
+
+        // Test the printBookTitle method with a title substring
+        System.out.println("\nBooks with 'war' in the title:");
+        myBookStore.printBookTitle("war");
+
+        // Test the printTitlesInAlphaOrder method to print all titles in alphabetical order
+        System.out.println("\nBooks in alphabetical order:");
+        myBookStore.printTitlesInAlphaOrder();
+
+        // Test the printGroupByDecade method with a specific decade
+        System.out.println("\nBooks from the 1940s:");
+        myBookStore.printGroupByDecade(1940);
+
+        // Test the getLongest method to find and print the longest title
+        System.out.println("\nThe longest title in the bookstore:");
+        myBookStore.getLongest();
     }
 }
 
