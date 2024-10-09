@@ -29,7 +29,6 @@ public class BookStore
 
     private static final int  DECADE_DIVIDER_TEN = 10;
     private static final int  DECADE_ADDITION_NINE = 9;
-    private static final int  ARRAY_INDEX_ZERO = 0;
 
     /**
      * Constructs a new BookStore with the specified name and list of novels.
@@ -239,7 +238,7 @@ public class BookStore
             return;
         }
 
-        Novel longestTitleNovel = novelList.get(ARRAY_INDEX_ZERO);
+        Novel longestTitleNovel = novelList.getFirst();
         for(Novel novel : novelList)
         {
             if(novel.getTitle().length() > longestTitleNovel.getTitle().length())

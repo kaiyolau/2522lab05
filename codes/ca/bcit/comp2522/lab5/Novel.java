@@ -3,6 +3,7 @@ package ca.bcit.comp2522.lab5;
 /**
  * Represents a novel with a title, author name, and year of publication.
  * This class is immutable, meaning its state cannot be changed after creation.
+ *
  * @author Yuho Lim
  * @author Daniil Yarygin
  * @author Kyle Lau
@@ -12,20 +13,9 @@ package ca.bcit.comp2522.lab5;
 public class Novel
 {
 
-    /**
-     * The title of the novel.
-     */
     private final String title;
-
-    /**
-     * The name of the novel's author.
-     */
     private final String authorName;
-
-    /**
-     * The year the novel was published.
-     */
-    private final int yearPublished;
+    private final int    yearPublished;
 
     /**
      * Constructs a new Novel with the specified title, author name, and publication year.
@@ -34,7 +24,9 @@ public class Novel
      * @param authorName    The name of the novel's author.
      * @param yearPublished The year the novel was published.
      */
-    public Novel(String title, String authorName, int yearPublished)
+    public Novel(final String title,
+                 final String authorName,
+                 final int yearPublished)
     {
         this.title = title;
         this.authorName = authorName;
