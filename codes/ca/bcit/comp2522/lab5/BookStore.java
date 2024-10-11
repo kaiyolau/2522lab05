@@ -267,12 +267,15 @@ public class BookStore
 
         for(Novel novel : novelList)
         {
-            int selectedBook;
-            selectedBook = novel.getYearPublished();
-
-            if(selectedBook == year)
+            if (novel != null)
             {
-                return true;
+                int selectedBook;
+                selectedBook = novel.getYearPublished();
+
+                if (selectedBook == year)
+                {
+                    return true;
+                }
             }
         }
         return false;
@@ -335,7 +338,7 @@ public class BookStore
         selectedNumOfBooks = 0;
         percentageOfSelectedBooks = 0;
 
-        if(novelList != null && !novelList.isEmpty())
+        if(!novelList.isEmpty())
         {
             final Iterator<Novel> it;
             it = novelList.iterator();
@@ -376,13 +379,17 @@ public class BookStore
 
         for(final Novel novel : novelList)
         {
-            if(novel != null)
+            int novelYear;
+            int oldestNovelYear;
+
+            novelYear = novel.getYearPublished();
+            oldestNovelYear = oldestBook.getYearPublished();
+
+            if(novelYear < oldestNovelYear)
             {
-                if(novel.getYearPublished() < oldestBook.getYearPublished())
-                {
-                    oldestBook = novel;
-                }
+                oldestBook = novel;
             }
+
         }
         return oldestBook.toString();
     }
