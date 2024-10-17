@@ -18,20 +18,17 @@ public class Main
      *
      * @param args Command line arguments (not used in this application).
      */
-    public static void main(String[] args)
+    public static void main(final String[] args)
     {
-        // Create a new BookShop instance
-        BookShop bookshop = new BookShop();
+        final BookShop bookshop;
+        bookshop = new BookShop();
 
-        // Print all the titles in the bookshop
         System.out.println("All titles in the bookshop:");
         bookshop.printTitles();
 
-        // Remove titles containing "the" (case-insensitive)
         System.out.println("\nRemoving titles containing 'the'...");
         bookshop.removeTitlesContainingThe();
 
-        // Print the sorted novels (after removing titles with "the")
         System.out.println("\nSorted novels (excluding titles with 'the'):");
         bookshop.printSortedNovels();
     }

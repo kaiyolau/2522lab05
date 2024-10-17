@@ -51,13 +51,17 @@ class BookShop
      */
     public void printTitles()
     {
-        Set<String> keySet = novelsMap.keySet();
-        Iterator<String> iterator = keySet.iterator();
+        final Set<String> keySet;
+        final Iterator<String> iterator;
+
+        keySet = novelsMap.keySet();
+        iterator = keySet.iterator();
 
         System.out.println("All novel titles:");
+
         while(iterator.hasNext())
         {
-            String title = iterator.next();
+            final String title = iterator.next();
             System.out.println(title);
         }
     }
@@ -68,11 +72,13 @@ class BookShop
      */
     public void removeTitlesContainingThe()
     {
-        Iterator<Map.Entry<String, Novel>> iterator = novelsMap.entrySet().iterator();
+        final Iterator<Map.Entry<String, Novel>> iterator;
+        iterator = novelsMap.entrySet().iterator();
 
         while(iterator.hasNext())
         {
-            Map.Entry<String, Novel> entry = iterator.next();
+            final Map.Entry<String, Novel> entry;
+            entry = iterator.next();
             if(entry.getKey().toLowerCase().contains("the"))
             {
                 iterator.remove();  // Remove the novel if "the" is in the title
@@ -90,18 +96,17 @@ class BookShop
      */
     public void printSortedNovels()
     {
-        // Step 1: Get the keys from the map
-        Set<String> keySet = novelsMap.keySet();
+        final Set<String> keySet;
+        final List<String> keyList;
 
-        // Step 2: Convert the keys to a List to allow sorting
-        List<String> keyList = new ArrayList<>(keySet);
+        keySet = novelsMap.keySet();
+        keyList = new ArrayList<>(keySet);
 
-        // Step 3: Sort the List
         Collections.sort(keyList);
 
-        // Print the sorted novels
         System.out.println("\nNovels in sorted order (after removing titles containing 'the'):");
-        for(String key : keyList)
+
+        for(final String key : keyList)
         {
             System.out.println(novelsMap.get(key).toString());
         }

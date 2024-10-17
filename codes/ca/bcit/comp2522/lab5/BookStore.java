@@ -34,10 +34,8 @@ public class BookStore
      * Constructs a new BookStore with the specified name and list of novels.
      *
      * @param bookStoreName The name of the bookstore.
-     * @param novels        The list of novels to be added to the bookstore.
      */
-    BookStore(final String bookStoreName,
-              final List<Novel> novels)
+    BookStore(final String bookStoreName)
     {
         this.bookStoreName = bookStoreName;
         this.novelList = new ArrayList<>();
@@ -170,7 +168,7 @@ public class BookStore
      */
     public void printAllTitles()
     {
-        for(Novel novel : novelList)
+        for(final Novel novel : novelList)
         {
             System.out.println(novel.getTitle().toUpperCase());
         }
@@ -183,7 +181,7 @@ public class BookStore
      */
     public void printBookTitle(final String title)
     {
-        for(Novel novel : novelList)
+        for(final Novel novel : novelList)
         {
             if(novel.getTitle().toLowerCase().contains(title.toLowerCase()))
             {
@@ -197,13 +195,17 @@ public class BookStore
      */
     public void printTitlesInAlphaOrder()
     {
-        List<String> titles = new ArrayList<>();
-        for(Novel novel : novelList)
+        final List<String> titles;
+        titles = new ArrayList<>();
+
+        for(final Novel novel : novelList)
         {
             titles.add(novel.getTitle());
         }
+
         titles.sort(String::compareToIgnoreCase);
-        for(String title : titles)
+
+        for(final String title : titles)
         {
             System.out.println(title);
         }
@@ -216,9 +218,13 @@ public class BookStore
      */
     public void printGroupByDecade(final int decade)
     {
-        int startYear = (decade / DECADE_DIVIDER_TEN) * DECADE_DIVIDER_TEN;
-        int endYear = startYear + DECADE_ADDITION_NINE;
-        for(Novel novel : novelList)
+        final int startYear;
+        final int endYear;
+
+        startYear = (decade / DECADE_DIVIDER_TEN) * DECADE_DIVIDER_TEN;
+        endYear = startYear + DECADE_ADDITION_NINE;
+
+        for(final Novel novel : novelList)
         {
             if(novel.getYearPublished() >= startYear && novel.getYearPublished() <= endYear)
             {
@@ -238,14 +244,17 @@ public class BookStore
             return;
         }
 
-        Novel longestTitleNovel = novelList.getFirst();
-        for(Novel novel : novelList)
+        Novel longestTitleNovel;
+        longestTitleNovel = novelList.getFirst();
+
+        for(final Novel novel : novelList)
         {
             if(novel.getTitle().length() > longestTitleNovel.getTitle().length())
             {
                 longestTitleNovel = novel;
             }
         }
+
         System.out.println("The longest title is: " + longestTitleNovel.getTitle());
     }
 
@@ -265,7 +274,7 @@ public class BookStore
     {
         validateYear(year);
 
-        for(Novel novel : novelList)
+        for(final Novel novel : novelList)
         {
             int selectedBook;
             selectedBook = novel.getYearPublished();
@@ -403,7 +412,8 @@ public class BookStore
             return null;
         }
 
-        List<Novel> sameLengthTitle = new ArrayList<>();
+        final List<Novel> sameLengthTitle;
+        sameLengthTitle = new ArrayList<>();
 
         for(final Novel novel : novelList)
         {
@@ -518,51 +528,39 @@ public class BookStore
         String oldestBook;
         String getBooksThisLength;
 
-        // Create a list of novels to be used in the bookstore
-        List<Novel> novelList = new ArrayList<>();
+        final List<Novel> novelList;
+        final BookStore   myBookStore;
 
-        // Create the bookstore object with the list of novels
-        BookStore myBookStore = new BookStore("Animal Crossing", novelList);
+        novelList  = new ArrayList<>();
+        myBookStore = new BookStore("Animal Crossing");
 
-        // Call the method to check if there's a book written in 1980
         bookWrittenBetween = myBookStore.isThereABookWrittenBetween(1980);
         System.out.println("Does this book store have a book written in 1980: " + (bookWrittenBetween ? "Yes" : "No"));
 
-        // Call the method to count how many books contain the word "white"
         wordCount = myBookStore.howManyBooksContain("white");
         System.out.println("The number of books that contain the word \"white\": " + wordCount);
 
-        // Call the method to find the percentage of books written between 1510 and 1980
         percentage = myBookStore.whichPercentWrittenBetween(1510, 1980);
         System.out.println("Percentage of books written between 1510 and 1980: " + percentage + "%");
 
-        // Call the method to get the oldest book in the bookstore
         oldestBook = myBookStore.getOldestBook();
         System.out.println("The oldest book in the store: " + oldestBook);
 
-        // Call the method to get books with titles of a specific length
         getBooksThisLength = myBookStore.getBooksThisLength(8);
         System.out.println("The books that have a length of 8 characters: " + getBooksThisLength);
 
-        // New Tests for the latest methods implemented
-
-        // Test the printAllTitles method to ensure it prints all titles in uppercase
         System.out.println("\nAll titles in UPPERCASE:");
         myBookStore.printAllTitles();
 
-        // Test the printBookTitle method with a title substring
         System.out.println("\nBooks with 'war' in the title:");
         myBookStore.printBookTitle("war");
 
-        // Test the printTitlesInAlphaOrder method to print all titles in alphabetical order
         System.out.println("\nBooks in alphabetical order:");
         myBookStore.printTitlesInAlphaOrder();
 
-        // Test the printGroupByDecade method with a specific decade
         System.out.println("\nBooks from the 1940s:");
         myBookStore.printGroupByDecade(1940);
 
-        // Test the getLongest method to find and print the longest title
         System.out.println("\nThe longest title in the bookstore:");
         myBookStore.getLongest();
     }
