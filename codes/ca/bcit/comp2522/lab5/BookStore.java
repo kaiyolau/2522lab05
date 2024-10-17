@@ -5,7 +5,7 @@ import java.util.Iterator;
 import java.util.List;
 
 /**
- * The BookStore class represents a bookstore that contains a list of novels.
+ * The great BookStore class represents a bookstore that contains a list of novels.
  * It provides methods to perform various operations related to the novels in the store,
  * such as retrieving the name of the bookstore, counting books that contain specific words,
  * calculating the percentage of books written in a certain year range, and more.
