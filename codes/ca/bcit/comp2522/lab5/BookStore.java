@@ -325,7 +325,7 @@ public class BookStore
 
     /**
      * Calculates the percentage of books written between the specified years.
-     *
+     * .
      * @param first The starting year of the range.
      * @param last  The ending year of the range.
      * @return The percentage of books written between the specified years.
